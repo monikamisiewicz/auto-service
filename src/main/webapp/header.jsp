@@ -13,7 +13,6 @@
     <li><a href="/">Start page</a></li>
     <li><a href="/customerList">Customer List</a></li>
     <li><a href="/employeeList">Employee List</a></li>
-
-    <li><a href="">Marginesy</a></li>
-    <li><a href="">Obramowanie</a></li>
+    <li><a href="/orderList">Orders</a></li>
+    <li><a href="/vehicleList">Vehicles</a></li>
 </ul>
