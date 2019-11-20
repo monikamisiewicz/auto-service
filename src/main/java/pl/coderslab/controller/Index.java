@@ -1,7 +1,11 @@
 package pl.coderslab.controller;
 
+import pl.coderslab.dao.EmployeeDao;
 import pl.coderslab.dao.OrderDao;
+import pl.coderslab.dao.StatusDao;
+import pl.coderslab.model.Employee;
 import pl.coderslab.model.Order;
+import pl.coderslab.model.Status;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,25 +20,32 @@ import java.util.List;
 @WebServlet("/")
 public class Index extends HttpServlet {
 
+    private OrderDao orderDao = new OrderDao();
+    private EmployeeDao employeeDao = new EmployeeDao();
+    private StatusDao statusDao = new StatusDao();
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        //Ma mieć możliwość przejścia do poszczególnych elementów aplikacji (nawigacja w postaci linków).
+        int statusId = 8; //in progress
+        List<Order> orders = orderDao.findAllByStatus(statusId);
+        req.getSession().setAttribute("orders", orders);
 
-        //Wyświetlać aktualnie prowadzone naprawy przez każdego z pracowników z możliwością przejścia do konkretnego zlecenia.
-
-//        OrderDao orderDao = new OrderDao();
-//        Order order = (Order) req.getSession().getAttribute("status");
-//        String status = order.getStatus();
-//
-//        List<Order> orders = orderDao.findAllByStatus(status);
-//
-//        HttpSession session = req.getSession();
-//        session.setAttribute("orders", orders);
-//
-//        getServletContext().getRequestDispatcher("/index.jsp")
-//                .forward(req, resp);
+        Employee employee = employeeDao.read(Integer.valueOf(req.getParameter("id")));
+        req.getSession().setAttribute("employee", employee);
+        Status status = statusDao.read(Integer.valueOf(req.getParameter("id")));
+        req.getSession().setAttribute("status", status);
 
 
+        int n = Integer.parseInt(getServletContext().getInitParameter("number-orders"));
+        //pobranie parametru inicjalizaji, który został określony w web.xml i zamiana na wart.liczbową
+        List<Order> recentOrders = orderDao.findRecent(n);
+        //przekazanie listy do widoku index1.jsp
+        req.setAttribute("recent", recentOrders);
+
+        getServletContext().getRequestDispatcher("/index.jsp")
+                .forward(req, resp);
     }
+
 }
