@@ -1,5 +1,6 @@
-package pl.coderslab.controller;
+package pl.coderslab.controller.vehicle;
 
+import pl.coderslab.dao.CustomerDao;
 import pl.coderslab.dao.VehicleDao;
 import pl.coderslab.model.Vehicle;
 
@@ -14,14 +15,19 @@ import java.util.List;
 @WebServlet("/vehicleList")
 public class VehicleList extends HttpServlet {
 
+    private VehicleDao vehicleDao = new VehicleDao();
+    private CustomerDao customerDao = new CustomerDao();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        VehicleDao vehicleDao = new VehicleDao();
+
         List<Vehicle> vehicles = vehicleDao.findAll();
         req.getSession().setAttribute("vehicles", vehicles);
 
-        getServletContext().getRequestDispatcher("/vehicleList.jsp")
+        req.setAttribute("customers", customerDao.findAll());
+
+        getServletContext().getRequestDispatcher("/vehicle/vehicleList.jsp")
                 .forward(req, resp);
 
     }

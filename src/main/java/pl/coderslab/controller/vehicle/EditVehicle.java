@@ -12,11 +12,13 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
 
-@WebServlet("/addVehicle")
-public class AddVehicle extends HttpServlet {
+
+@WebServlet("/editVehicle")
+public class EditVehicle extends HttpServlet {
 
     private VehicleDao vehicleDao = new VehicleDao();
     private CustomerDao customerDao = new CustomerDao();
+
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,15 +26,19 @@ public class AddVehicle extends HttpServlet {
         req.setAttribute("vehicles", vehicleDao.findAll());
         req.setAttribute("customers", customerDao.findAll());
 
-        getServletContext().getRequestDispatcher("/vehicle/addVehicle.jsp")
+        int id = Integer.parseInt(req.getParameter("id"));
+        Vehicle vehicle = vehicleDao.read(id);
+
+        req.getSession().setAttribute("vehicle", vehicle);
+
+        getServletContext().getRequestDispatcher("/vehicle/editVehicle.jsp")
                 .forward(req, resp);
+
     }
 
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        VehicleDao vehicleDao = new VehicleDao();
-
+        int id = Integer.parseInt(req.getParameter("id"));
         String model = req.getParameter("model");
         String brand = req.getParameter("brand");
         int yearOfProduction = Integer.parseInt(req.getParameter("yearOfProduction"));
@@ -41,6 +47,7 @@ public class AddVehicle extends HttpServlet {
         int customerId = Integer.parseInt(req.getParameter("customerId"));
 
         Vehicle vehicle = new Vehicle();
+        vehicle.setId(id);
         vehicle.setModel(model);
         vehicle.setBrand(brand);
         vehicle.setYearOfProduction(yearOfProduction);
@@ -57,9 +64,9 @@ public class AddVehicle extends HttpServlet {
             e.printStackTrace();
         }
 
-        vehicleDao.create(vehicle);
+        vehicleDao.update(vehicle);
 
-        resp.sendRedirect("/customerVehicles?id="+customerId);
+        resp.sendRedirect("/customerVehicles?id=" + customerId);
 
 
     }
