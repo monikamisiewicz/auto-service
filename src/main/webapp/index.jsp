@@ -12,51 +12,50 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>AUTO SERVICE</title>
-    <link rel="stylesheet" href="<c:url value="/css/style.css"/> ">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="<c:url value="/css/style.css"/> ">
+
 </head>
 <body>
 <jsp:include page="header.jsp"/>
 
-<div><h3>CURRENT REPAIRS</h3></div>
+<div><h3 class="title">REPAIRS IN PROGRESS</h3></div>
+
 <div>
-    <table>
-        <thead>
+    <table class="table">
+        <thead class="thead-dark">
         <tr>
-            <th>ID</th>
-            <th>REPAIR ACCEPTANCE DATE</th>
-<%--            <th>PLANNED REPAIR START</th>--%>
-            <th>REPAIR START</th>
-            <th>PROBLEM DESCRIPTION</th>
-            <th>REPAIR DESCRIPTION</th>
-            <th>STATUS</th>
-            <th>VEHICLE</th>
-            <th>CUSTOMER COST</th>
-            <th>SPARE PARTS COST</th>
-            <th>MAN HOUR COST</th>
-            <th>MAN HOUR AMOUNT</th>
-            <th>CUSTOMER ID</th>
-            <th>EMPLOYEE ID</th>
-            <th>MORE</th>
+            <th scope="col">#</th>
+            <th scope="col">REPAIR START</th>
+            <th scope="col">REPAIR DESCRIPTION</th>
+            <th scope="col">EMPLOYEE</th>
+            <th scope="col">MORE</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach var="order" items="${orders}">
-            <tr>
-                <td><a href="/orders?id=${order.id}">${order.id}</a></td>
-                <td>${order.repairAcceptanceDate}</td>
-                <td>${order.repairStart}</td>
-                <td>${order.problemDescription}</td>
-                <td>${order.repairDescription}</td>
-                <td>${order.status}</td>
-                <td>${order.vehicle}</td>
-                <td>${order.customerCost}</td>
-                <td>${order.sparepartsCost}</td>
-                <td>${order.manHourCost}</td>
-                <td>${order.manHourAmount}</td>
-                <td>${order.customerId}</td>
-                <td>${order.employeeId}</td>
-            </tr>
-        </c:forEach>
+<%--        <c:forEach var="order" items="${orders}" varStatus="loopCounter">--%>
+<%--            <tr>--%>
+<%--                <th scope="row">${loopCounter.count}</th>--%>
+<%--                <td>${order.repairStart}</td>--%>
+<%--                <td>${order.repairDescription}</td>--%>
+<%--                <td>${order.employeeId} </td>--%>
+<%--                <td><a href="/orderDetails?id=${order.id}">Details</a></td>--%>
+<%--            </tr>--%>
+<%--        </c:forEach>--%>
+
+<c:forEach var="order" items="${recent}" varStatus="loopCounter">
+    <tr>
+        <th scope="row">${loopCounter.count}</th>
+        <td>${order.repairStart}</td>
+        <td>${order.repairDescription}</td>
+        <td>${order.employeeId} </td>
+        <td><a href="/orderDetails?id=${order.id}">Details</a></td>
+    </tr>
+</c:forEach>
         </tbody>
     </table>
 </div>
@@ -64,6 +63,11 @@
 
 
 <jsp:include page="footer.jsp"/>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
 </body>
 </html>
 

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: monikamisiewicz
-  Date: 2019-11-04
-  Time: 14:21
+  Date: 2019-11-13
+  Time: 10:40
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -19,44 +19,62 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value="../css/style.css"/> ">
 </head>
+
 <body>
 <jsp:include page="../header.jsp"/>
 
-<h3>NEW EMPLOYEE</h3>
-<form action="/addEmployee" method="post">
+<div><a href="/customerVehicles?id=${customer.id}">Back</a></div>
+
+
+<h3>EDIT VEHICLE</h3>
+<form action="/editVehicle?id=${vehicle.id}" method="post">
 
     <div class="form-group">
-        <label for="firstName">First name</label>
-        <input type="text" class="form-control" name="firstName" required placeholder="Enter first name" id="firstName"/>
-    </div>
-
-    <div class="form-group">
-        <label for="lastName">Last name</label>
-        <input type="text" class="form-control" name="lastName" required placeholder="Last name" id="lastName"/>
-    </div>
-
-    <div class="form-group purple-border">
-        <label for="address">Address</label>
-        <textarea class="form-control" name="address" rows="3" placeholder="Address" id="address"></textarea>
+        <label for="model">Model</label>
+        <input type="text" class="form-control" name="model" required value="${vehicle.model}" id="model"/>
     </div>
 
     <div class="form-group">
-        <label for="telephone">Telephone number</label>
-        <input type="text" class="form-control" name="telephone" required placeholder="Telephone number" id="telephone"/>
-    </div>
-
-
-    <div class="form-group purple-border">
-        <label for="note">Note</label>
-        <textarea class="form-control" name="note" rows="3" placeholder="Note" id="note"></textarea>
+        <label for="brand">Brand</label>
+        <input type="text" class="form-control" name="brand" required value="${vehicle.brand}" id="brand"/>
     </div>
 
     <div class="form-group">
-        <label for="manHourCost">Man hour cost</label>
-            <input type="number" class="form-control" name="manHourCost" id="manHourCost" min="0.00" step="0.01" placeholder="Man hour cost">
+        <label for="productionYear">Year of production</label>
+        <input type="number" class="form-control" min="1900" step="1" name="yearOfProduction"
+               value="${vehicle.yearOfProduction}" id="productionYear">
     </div>
+
+    <div class="form-group">
+        <label for="registrationNo">Registration number</label>
+        <input type="text" class="form-control" name="registrationNumber" value="${vehicle.registrationNumber}"
+               id="registrationNo">
+    </div>
+
+    <div class="form-group">
+        <label for="nextService">Next service</label>
+        <input type="date" class="form-control" name="nextService" value="${vehicle.nextService}" id="nextService">
+    </div>
+
+    <div class="form-group">
+        <label for="customer">Customer</label>
+        <input type="text" class="form-control" name="customer" value="${customer.firstName} ${customer.lastName}"
+               id="customer">
+    </div>
+
+
+    <%--        <div class="form-group">--%>
+    <%--        <label for="customer">Customer</label>--%>
+    <%--        <select class="custom-select" id="customer" name="customerId">--%>
+    <%--            <c:forEach var="customer" items="${customers}">--%>
+    <%--                <option selected value="${customer.id}">${customer.firstName} ${customer.lastName}--%>
+    <%--                    ID ${customer.id}</option>--%>
+    <%--            </c:forEach>--%>
+    <%--        </select>--%>
+    <%--    </div>--%>
 
     <button type="submit" class="btn btn-primary">SAVE</button>
+
 </form>
 
 <jsp:include page="../footer.jsp"/>
@@ -70,5 +88,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+
 </body>
+
 </html>
+

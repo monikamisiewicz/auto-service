@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: monikamisiewicz
-  Date: 2019-11-10
-  Time: 19:33
+  Date: 2019-11-11
+  Time: 21:16
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -19,41 +19,28 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="<c:url value="../css/style.css"/> ">
 </head>
-
 <body>
 <jsp:include page="../header.jsp"/>
 
-<div><h3>ORDER LIST</h3></div>
-<div><a href="/addOrder">Add order</a></div>
+<h4>Delete order?</h4>
+<form action="/deleteOrder?id=${order.id}" method="post">
 
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="delete" id="firstRadio" value="Cancel" checked>
+        <label class="form-check-label" for="firstRadio">
+            Return
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="delete" id="secondRadio" value="Ok">
+        <label class="form-check-label" for="secondRadio">
+            Delete
+        </label>
+    </div>
 
-<div>
-    <table class="table">
-        <thead class="thead-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">REPAIR ACCEPTANCE DATE</th>
-            <th scope="col">PROBLEM DESCRIPTION</th>
-            <th colspan="3">MORE</th>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="order" items="${orders}" varStatus="loopCount">
-            <tr>
-                <th scope="row">${loopCount.count}</th>
-                <td>${order.repairAcceptanceDate}</td>
-                <td>${order.problemDescription}</td>
-                <td><a href="/orderDetails?id=${order.id}">Details</a></td>
-<%--                <td><a href="/orderDetails?id=${order.id}&customerId=${customer.id}&vehicleId=${vehicle.id}&statusId=${status.id}&employeeId=${employee.id}">Details</a></td>--%>
-                <td><a href="/editOrder?id=${order.id}">Edit</a></td>
-                <td><a href="/deleteOrder?id=${order.id}">Delete</a></td>
-            </tr>
-        </c:forEach>
+    <button type="submit" class="btn btn-warning">Submit</button>
 
-        </tbody>
-    </table>
-</div>
-
+</form>
 
 <jsp:include page="../footer.jsp"/>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -61,5 +48,4 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 </body>
-
 </html>

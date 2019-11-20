@@ -13,14 +13,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>AUTO SERVICE</title>
-    <link rel="stylesheet" href="<c:url value="/css/style.css"/> ">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<c:url value="../css/style.css"/> ">
 </head>
 <body>
-<jsp:include page="header.jsp"/>
+<jsp:include page="../header.jsp"/>
 
 
 <div><h3>EMPLOYEE ORDERS</h3></div>
-<h3>Employee: ${employee.firstName} ${employee.lastName}</h3>
 <div>
     <div>
         <a href="/employeeList">Back</a>
@@ -30,21 +34,22 @@
 
 
 <div>
-    <table>
-        <thead>
+    <table class="table">
+        <caption>Employee: ${employee.firstName} ${employee.lastName}</caption>
+        <thead class="thead-dark">
         <tr>
-            <th> </th>
-            <th>REPAIR START</th>
-            <th>REPAIR DESCRIPTION</th>
-            <th>EMPLOYEE ID</th>
-            <th>STATUS ID</th>
+            <th scope="col">#</th>
+            <th scope="col">REPAIR START</th>
+            <th scope="col">REPAIR DESCRIPTION</th>
+            <th scope="col">EMPLOYEE ID</th>
+            <th scope="col">STATUS ID</th>
             <th colspan="3">MORE</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach var="order" items="${orders}" varStatus="loopCount">
             <tr>
-                <th>${loopCount.count}</th>
+                <th scope="row">${loopCount.count}</th>
                 <td>${order.repairStart}</td>
                 <td>${order.repairDescription}</td>
                 <td>${order.employeeId}</td>
@@ -60,6 +65,10 @@
 </div>
 
 
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 </html>

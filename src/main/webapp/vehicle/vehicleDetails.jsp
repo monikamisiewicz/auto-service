@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: monikamisiewicz
-  Date: 2019-11-05
-  Time: 20:08
+  Date: 2019-11-13
+  Time: 21:55
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -17,46 +17,66 @@
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="<c:url value="../css/style.css"/> ">
+    <link rel="stylesheet" href="<c:url value="../css/style.css"/> ">
 </head>
+
 <body>
 <jsp:include page="../header.jsp"/>
 
+<%--<a href="/customerVehicles?id=${customer.id}">Back</a>--%>
 
-<div>
-    <h3>CUSTOMER VEHICLES</h3>
 
-</div>
-<div>
-    <div><a href="/customerDetails?id=${customer.id}">Back</a></div>
-</div>
-<div><a href="/addVehicle">Add vehicle</a></div>
+<h3>VEHICLE DETAILS</h3>
+<a href="/addVehicle">Add vehicle</a>
 
 
 <table class="table">
-    <caption>Owner: ${customer.firstName} ${customer.lastName}</caption>
     <thead class="thead-dark">
     <tr>
-        <th  scope="col">#</th>
-        <th>MODEL</th>
-        <th>BRAND</th>
-        <th colspan="3">MORE</th>
+        <th scope="col">MODEL</th>
+        <th scope="col">BRAND</th>
+        <th scope="col">YEAR OF PRODUCTION</th>
+        <th scope="col">REGISTRATION NUMBER</th>
+        <th scope="col">NEXT SERVICE</th>
+        <th scope="col">CUSTOMER</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="vehicle" items="${vehicles}" varStatus="loopCount">
+    <tr>
+        <td>${vehicle.model}</td>
+        <td>${vehicle.brand}</td>
+        <td>${vehicle.yearOfProduction}</td>
+        <td>${vehicle.registrationNumber}</td>
+        <td>${vehicle.nextService}</td>
+        <td>${customer.firstName} ${customer.lastName}</td>
+    </tr>
+    </tbody>
+</table>
+
+
+<div><h3>REPAIR HISTORY</h3></div>
+
+<table class="table">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">REPAIR START</th>
+        <th scope="col">REPAIR DESCRIPTION</th>
+        <th scope="col">MORE</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <c:forEach var="order" items="${orders}" varStatus="loopCount">
         <tr>
-            <th scope="row">${loopCount.count}</th>
-            <td>${vehicle.model}</td>
-            <td>${vehicle.brand}</td>
-            <td><a href="/vehicleDetails?id=${vehicle.id}">Details</a></td>
-            <td><a href="/editVehicle?id=${vehicle.id}">Edit</a></td>
-            <td><a href="/deleteVehicle?id=${vehicle.id}">Delete</a></td>
+            <th scope="row">${loopCount.count} </th>
+            <td>${order.repairStart}</td>
+            <td>${order.repairDescription}</td>
+            <td><a href="/orderDetails?id=${order.id}">Details</a></td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
-
 
 <jsp:include page="../footer.jsp"/>
 
@@ -69,5 +89,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+
 </body>
+
 </html>

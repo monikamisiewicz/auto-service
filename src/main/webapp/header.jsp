@@ -5,14 +5,18 @@
   Time: 15:25
   To change this template use File | Settings | File Templates.
 --%>
-<h1>MENU</h1>
+
+    <h3>AUTO-SERVICE</h3>
+    <h3>MENU</h3>
+<nav>
+    <ul>
+        <li><a href="/">Start page</a></li>
+        <li><a href="/customerList">Customer List</a></li>
+        <li><a href="/employeeList">Employee List</a></li>
+        <li><a href="/orderList">Order List</a></li>
+        <li><a href="/vehicleList">Vehicle list</a></li>
+        <li><a href="/reports">Reports</a></li>
+    </ul>
+</nav>
 
 
-
-<ul>
-    <li><a href="/">Start page</a></li>
-    <li><a href="/customerList">Customer List</a></li>
-    <li><a href="/employeeList">Employee List</a></li>
-    <li><a href="/orderList">Orders</a></li>
-    <li><a href="/vehicleList">Vehicles</a></li>
-</ul>
