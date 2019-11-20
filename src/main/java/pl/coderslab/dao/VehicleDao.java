@@ -12,11 +12,11 @@ import java.util.List;
 
 public class VehicleDao {
 
-    private static final String CREATE_QUERY = "INSERT INTO vehicles(model, brand, year_of_production, registration_number, note, next_service, customer_id) VALUES (?,?,?,?,?,?,?)";
+    private static final String CREATE_QUERY = "INSERT INTO vehicles(model, brand, year_of_production, registration_number, next_service, customer_id) VALUES (?,?,?,?,?,?)";
     private static final String READ_BY_ID_QUERY = "SELECT * FROM vehicles WHERE id = ?";
-    private static final String UPDATE_QUERY = "UPDATE vehicles SET model = ?, brand = ?, year_of_production = ?, registration_number = ?, note = ?, next_service = ?, customer_id=?  WHERE id = ?";
+    private static final String UPDATE_QUERY = "UPDATE vehicles SET model = ?, brand = ?, year_of_production = ?, registration_number = ?, next_service = ?, customer_id=?  WHERE id = ?";
     private static final String DELETE_QUERY = "DELETE FROM vehicles WHERE id = ?";
-    private static final String FIND_ALL_QUERY = "SELECT * FROM vehicles";
+    private static final String FIND_ALL_QUERY = "SELECT * FROM vehicles ORDER BY customer_id ";
     private static final String FIND_ALL_BY_CUSTOMER_ID_QUERY = "SELECT * FROM vehicles WHERE customer_id=?";
 
     public Vehicle create(Vehicle vehicle) {
@@ -26,9 +26,8 @@ public class VehicleDao {
             statement.setString(2, vehicle.getBrand());
             statement.setInt(3, vehicle.getYearOfProduction());
             statement.setString(4, vehicle.getRegistrationNumber());
-            statement.setString(5, vehicle.getNote());
-            statement.setDate(6, vehicle.getNextService());
-            statement.setInt(7, vehicle.getCustomerId());
+            statement.setDate(5, vehicle.getNextService());
+            statement.setInt(6, vehicle.getCustomerId());
 
             statement.executeUpdate();
             ResultSet rs = statement.getGeneratedKeys();
@@ -56,7 +55,6 @@ public class VehicleDao {
                 vehicle.setBrand(rs.getString("brand"));
                 vehicle.setYearOfProduction(rs.getInt("year_of_production"));
                 vehicle.setRegistrationNumber(rs.getString("registration_number"));
-                vehicle.setNote(rs.getString("note"));
                 vehicle.setNextService(rs.getDate("next_service"));
                 vehicle.setCustomerId(rs.getInt("customer_id"));
                 return vehicle;
@@ -76,10 +74,9 @@ public class VehicleDao {
             statement.setString(2, vehicle.getBrand());
             statement.setInt(3, vehicle.getYearOfProduction());
             statement.setString(4, vehicle.getRegistrationNumber());
-            statement.setString(5, vehicle.getNote());
-            statement.setDate(6, vehicle.getNextService());
-            statement.setInt(7, vehicle.getCustomerId());
-            statement.setInt(8, vehicle.getId());
+            statement.setDate(5, vehicle.getNextService());
+            statement.setInt(6, vehicle.getCustomerId());
+            statement.setInt(7, vehicle.getId());
             statement.executeUpdate();
 
         } catch (SQLException e) {
@@ -112,7 +109,6 @@ public class VehicleDao {
                 vehicle.setBrand(rs.getString("brand"));
                 vehicle.setYearOfProduction(rs.getInt("year_of_production"));
                 vehicle.setRegistrationNumber(rs.getString("registration_number"));
-                vehicle.setNote(rs.getString("note"));
                 vehicle.setNextService(rs.getDate("next_service"));
                 vehicle.setCustomerId(rs.getInt("customer_id"));
 
@@ -127,7 +123,7 @@ public class VehicleDao {
 
 
 
-    public List<Vehicle> findAll(int customerId) {
+    public List<Vehicle> findAllbyCustomerId(int customerId) {
         List<Vehicle> vehicles = new ArrayList<>();
         try (Connection conn = DbUtil.getConn();
              PreparedStatement statement = conn.prepareStatement(FIND_ALL_BY_CUSTOMER_ID_QUERY)) {
@@ -140,7 +136,6 @@ public class VehicleDao {
                     vehicle.setBrand(rs.getString("brand"));
                     vehicle.setYearOfProduction(rs.getInt("year_of_production"));
                     vehicle.setRegistrationNumber(rs.getString("registration_number"));
-                    vehicle.setNote(rs.getString("note"));
                     vehicle.setNextService(rs.getDate("next_service"));
                     vehicle.setCustomerId(rs.getInt("customer_id"));
 
