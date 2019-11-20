@@ -1,4 +1,4 @@
-package pl.coderslab.controller;
+package pl.coderslab.controller.order;
 
 import pl.coderslab.dao.*;
 import pl.coderslab.model.*;
@@ -22,7 +22,7 @@ public class OrderList extends HttpServlet {
         List<Order> orders = orderDao.findAll();
         req.getSession().setAttribute("orders", orders);
 
-        getServletContext().getRequestDispatcher("/orderList.jsp")
+        getServletContext().getRequestDispatcher("/order/orderList.jsp")
                 .forward(req, resp);
     }
 }

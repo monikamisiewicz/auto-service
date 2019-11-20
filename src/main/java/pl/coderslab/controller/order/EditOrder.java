@@ -1,9 +1,7 @@
 package pl.coderslab.controller.order;
 
 import pl.coderslab.dao.*;
-import pl.coderslab.model.Customer;
 import pl.coderslab.model.Order;
-import pl.coderslab.model.Vehicle;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,10 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.Date;
-import java.util.List;
 
-@WebServlet("/addOrder")
-public class AddOrder extends HttpServlet {
+@WebServlet("/editOrder")
+public class EditOrder extends HttpServlet {
 
     private OrderDao orderDao = new OrderDao();
     private VehicleDao vehicleDao = new VehicleDao();
@@ -23,34 +20,34 @@ public class AddOrder extends HttpServlet {
     private CustomerDao customerDao = new CustomerDao();
     private StatusDao statusDao = new StatusDao();
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-//        int customerId = Integer.valueOf(req.getParameter("id"));
-//        Customer customer = customerDao.read(customerId);
-//        req.getSession().setAttribute("customer", customer);
 
         req.setAttribute("vehicles", vehicleDao.findAll());
         req.setAttribute("employees", employeeDao.findAll());
         req.setAttribute("customers", customerDao.findAll());
         req.setAttribute("statuses", statusDao.findAll());
-        getServletContext().getRequestDispatcher("/order/addOrder.jsp")
+
+        int id = Integer.parseInt(req.getParameter("id"));
+        Order order = orderDao.read(id);
+
+        req.getSession().setAttribute("order", order);
+
+        getServletContext().getRequestDispatcher("/order/editOrder.jsp")
                 .forward(req, resp);
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-
+        int id = Integer.parseInt(req.getParameter("id"));
         String repairAcceptanceDatePar = req.getParameter("repairAcceptanceDate");
         String plannedRepairStartPar = req.getParameter("plannedRepairStart");
         String repairStartPar = req.getParameter("repairStart");
         String problemDescription = req.getParameter("problemDescription");
         String repairDescription = req.getParameter("repairDescription");
         String customerCostPar = req.getParameter("customerCost");
-
-
         String sparepartsCostPar = req.getParameter("sparepartsCost");
         String manHourCostPar = req.getParameter("manHourCost");
         int manHourAmount = Integer.parseInt(req.getParameter("manHourAmount"));
@@ -60,6 +57,7 @@ public class AddOrder extends HttpServlet {
         int statusId = Integer.parseInt(req.getParameter("statusId"));
 
         Order order = new Order();
+        order.setId(id);
         try {
             Date repairAcceptanceDate = repairAcceptanceDatePar != null
                     ? Date.valueOf(req.getParameter("repairAcceptanceDate"))
@@ -76,13 +74,8 @@ public class AddOrder extends HttpServlet {
                     : null;
             order.setRepairStart(repairStart);
 
-//            double customerCost = customerCostPar != null
-//                    ? Double.parseDouble((req.getParameter("customerCost")))
-//                    : 0;
-//            order.setCustomerCost(customerCost);
-
             double customerCost = customerCostPar != null
-                    ? Double.parseDouble(sparepartsCostPar + (manHourCostPar + manHourAmount))
+                    ? Double.parseDouble((req.getParameter("customerCost")))
                     : 0;
             order.setCustomerCost(customerCost);
 
@@ -103,23 +96,12 @@ public class AddOrder extends HttpServlet {
         order.setProblemDescription(problemDescription);
         order.setRepairDescription(repairDescription);
         order.setManHourAmount(manHourAmount);
-        order.setEmployeeId(employeeId);
-        order.setStatusId(statusId);
         order.setCustomerId(customerId);
+        order.setEmployeeId(employeeId);
         order.setVehicleId(vehicleId);
+        order.setStatusId(statusId);
 
-        //???
-//        List<Vehicle> vehicles = vehicleDao.findAllbyCustomerId(customerId);
-//        for(int i=0; i<vehicles.size(); i++) {
-//            Vehicle vehicle = vehicleDao.read(customerId);
-//            if(customerId == vehicle.getCustomerId()) {
-//                order.setVehicleId(vehicleId);
-//            }
-//        }
-
-
-
-        orderDao.create(order);
+        orderDao.update(order);
 
         resp.sendRedirect("/order/orderList");
 
