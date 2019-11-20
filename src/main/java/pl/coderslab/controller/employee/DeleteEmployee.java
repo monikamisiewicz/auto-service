@@ -1,4 +1,4 @@
-package pl.coderslab.controller;
+package pl.coderslab.controller.employee;
 
 import pl.coderslab.dao.EmployeeDao;
 import pl.coderslab.model.Employee;
@@ -25,7 +25,7 @@ public class DeleteEmployee extends HttpServlet {
         req.getSession().setAttribute("employee", employee);
 
         getServletContext()
-                .getRequestDispatcher("/deleteEmployee.jsp")
+                .getRequestDispatcher("/employee/deleteEmployee.jsp")
                 .forward(req, resp);
 
     }

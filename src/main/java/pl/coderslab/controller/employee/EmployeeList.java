@@ -1,4 +1,4 @@
-package pl.coderslab.controller;
+package pl.coderslab.controller.employee;
 
 import pl.coderslab.dao.*;
 import pl.coderslab.model.Employee;
@@ -23,7 +23,7 @@ public class EmployeeList extends HttpServlet {
         List<Employee> employees = employeeDao.findAll();
         req.getSession().setAttribute("employees", employees);
 
-        getServletContext().getRequestDispatcher("/employeeList.jsp")
+        getServletContext().getRequestDispatcher("/employee/employeeList.jsp")
                 .forward(req, resp);
     }
 }

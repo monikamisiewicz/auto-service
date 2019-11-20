@@ -1,4 +1,4 @@
-package pl.coderslab.controller;
+package pl.coderslab.controller.employee;
 
 import pl.coderslab.dao.EmployeeDao;
 import pl.coderslab.model.Employee;
@@ -18,7 +18,7 @@ public class AddEmployee extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        getServletContext().getRequestDispatcher("/addEmployee.jsp")
+        getServletContext().getRequestDispatcher("/employee/addEmployee.jsp")
                 .forward(req, resp);
     }
 
@@ -52,7 +52,6 @@ public class AddEmployee extends HttpServlet {
         }
 
         employeeDao.create(employee);
-
 
         resp.sendRedirect("/employeeList");
 

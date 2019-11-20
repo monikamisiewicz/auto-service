@@ -1,4 +1,4 @@
-package pl.coderslab.controller;
+package pl.coderslab.controller.employee;
 
 import pl.coderslab.dao.*;
 import pl.coderslab.model.Employee;
@@ -32,7 +32,7 @@ public class EditEmployee extends HttpServlet {
 
         req.getSession().setAttribute("employee", employee);
 
-        getServletContext().getRequestDispatcher("/editEmployee.jsp")
+        getServletContext().getRequestDispatcher("/employee/editEmployee.jsp")
                 .forward(req, resp);
 
     }

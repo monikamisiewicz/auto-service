@@ -1,4 +1,4 @@
-package pl.coderslab.controller;
+package pl.coderslab.controller.employee;
 
 import pl.coderslab.dao.*;
 import pl.coderslab.model.Order;
@@ -23,7 +23,7 @@ public class EmployeeOrders extends HttpServlet {
         List<Order> employeeOrders = orderDao.findAllByEmployeeId(Integer.valueOf(req.getParameter("id")));
         req.getSession().setAttribute("orders", employeeOrders);
 
-        getServletContext().getRequestDispatcher("/employeeOrders.jsp")
+        getServletContext().getRequestDispatcher("/employee/employeeOrders.jsp")
                 .forward(req, resp);
 
     }
