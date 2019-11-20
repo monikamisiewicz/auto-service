@@ -10,19 +10,17 @@ public class Vehicle {
     private String brand;
     private int yearOfProduction;
     private String registrationNumber;
-    private String note;
     private Date nextService;
     private int customerId;
 
     public Vehicle() {
     }
 
-    public Vehicle(String model, String brand, int yearOfProduction, String registrationNumber, String note, Date nextService, int customerId) {
+    public Vehicle(String model, String brand, int yearOfProduction, String registrationNumber, Date nextService, int customerId) {
         this.model = model;
         this.brand = brand;
         this.yearOfProduction = yearOfProduction;
         this.registrationNumber = registrationNumber;
-        this.note = note;
         this.nextService = nextService;
         this.customerId = customerId;
 
@@ -66,14 +64,6 @@ public class Vehicle {
 
     public void setRegistrationNumber(String registrationNumber) {
         this.registrationNumber = registrationNumber;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
     }
 
     public Date getNextService() {

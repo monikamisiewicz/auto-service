@@ -11,9 +11,6 @@ public class Order {
     private Date repairStart;
     private String problemDescription;
     private String repairDescription;
-    private String status; //Status status??
-//    private Vehicle vehicle;//Vehicle vehicle
-    //private Employee employee??
     private double customerCost;
     private double sparepartsCost;
     private double manHourCost;
@@ -21,17 +18,17 @@ public class Order {
     private int customerId;
     private int employeeId;
     private int vehicleId;
+    private int statusId;
 
     public Order() {
     }
 
-    public Order(Date repairAcceptanceDate, Date plannedRepairStart, Date repairStart, String problemDescription, String repairDescription, String status, double customerCost, double sparepartsCost, double manHourCost, int manHourAmount, int customerId, int employeeId, int vehicleId) {
+    public Order(Date repairAcceptanceDate, Date plannedRepairStart, Date repairStart, String problemDescription, String repairDescription, double customerCost, double sparepartsCost, double manHourCost, int manHourAmount, int customerId, int employeeId, int vehicleId, int statusId) {
         this.repairAcceptanceDate = repairAcceptanceDate;
         this.plannedRepairStart = plannedRepairStart;
         this.repairStart = repairStart;
         this.problemDescription = problemDescription;
         this.repairDescription = repairDescription;
-        this.status = status;
         this.customerCost = customerCost;
         this.sparepartsCost = sparepartsCost;
         this.manHourCost = manHourCost;
@@ -39,6 +36,7 @@ public class Order {
         this.customerId = customerId;
         this.employeeId = employeeId;
         this.vehicleId = vehicleId;
+        this.statusId = statusId;
     }
 
     public int getId() {
@@ -87,14 +85,6 @@ public class Order {
 
     public void setRepairDescription(String repairDescription) {
         this.repairDescription = repairDescription;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public double getCustomerCost() {
@@ -151,5 +141,13 @@ public class Order {
 
     public void setVehicleId(int vehicleId) {
         this.vehicleId = vehicleId;
+    }
+
+    public int getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
     }
 }
