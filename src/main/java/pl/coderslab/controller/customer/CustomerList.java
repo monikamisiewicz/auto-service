@@ -27,8 +27,6 @@ public class CustomerList extends HttpServlet {
         getServletContext().getRequestDispatcher("/customer/customerList.jsp")
                 .forward(req, resp);
 
-        //Strona ma wyświetlać listę klientów grup z możliwością przejścia do szczegółów z listą wszystkich pojazdów.
-//dołożyć atrybut id i przesłać do widoku (do szczegółów), metoda readById, nowy servlet???
 
     }
 }

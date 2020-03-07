@@ -25,10 +25,6 @@ public class VehicleDetails extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-//        int customerId = Integer.valueOf(req.getParameter("id"));
-//        Customer customer = customerDao.read(customerId);
-        //        req.getSession().setAttribute("customer", customer);
-
         int vehicleId = Integer.valueOf(req.getParameter("id"));
         Vehicle vehicle =  vehicleDao.read(vehicleId);
         req.getSession().setAttribute("vehicle", vehicle);

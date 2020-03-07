@@ -63,16 +63,6 @@
     </div>
 
 
-    <%--        <div class="form-group">--%>
-    <%--        <label for="customer">Customer</label>--%>
-    <%--        <select class="custom-select" id="customer" name="customerId">--%>
-    <%--            <c:forEach var="customer" items="${customers}">--%>
-    <%--                <option selected value="${customer.id}">${customer.firstName} ${customer.lastName}--%>
-    <%--                    ID ${customer.id}</option>--%>
-    <%--            </c:forEach>--%>
-    <%--        </select>--%>
-    <%--    </div>--%>
-
     <button type="submit" class="btn btn-primary">SAVE</button>
 
 </form>

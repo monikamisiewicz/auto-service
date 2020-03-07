@@ -44,7 +44,6 @@
                 <td>${order.repairAcceptanceDate}</td>
                 <td>${order.problemDescription}</td>
                 <td><a href="/orderDetails?id=${order.id}">Details</a></td>
-<%--                <td><a href="/orderDetails?id=${order.id}&customerId=${customer.id}&vehicleId=${vehicle.id}&statusId=${status.id}&employeeId=${employee.id}">Details</a></td>--%>
                 <td><a href="/editOrder?id=${order.id}">Edit</a></td>
                 <td><a href="/deleteOrder?id=${order.id}">Delete</a></td>
             </tr>

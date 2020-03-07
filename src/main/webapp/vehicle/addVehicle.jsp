@@ -23,7 +23,6 @@
 <jsp:include page="../header.jsp"/>
 
 
-<%--<a href="/customerVehicles?id=${customer.id}">Back</a>--%>
 
 <h3>NEW VEHICLE</h3>
 <form action="/addVehicle" method="post">

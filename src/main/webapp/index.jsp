@@ -46,16 +46,6 @@
                 <td><a href="/orderDetails?id=${order.id}">Details</a></td>
             </tr>
         </c:forEach>
-
-<%--<c:forEach var="order" items="${recent}" varStatus="loopCounter">--%>
-<%--    <tr>--%>
-<%--        <th scope="row">${loopCounter.count}</th>--%>
-<%--        <td>${order.repairStart}</td>--%>
-<%--        <td>${order.repairDescription}</td>--%>
-<%--        <td>${order.employeeId} </td>--%>
-<%--        <td><a href="/orderDetails?id=${order.id}">Details</a></td>--%>
-<%--    </tr>--%>
-<%--</c:forEach>--%>
         </tbody>
     </table>
 </div>

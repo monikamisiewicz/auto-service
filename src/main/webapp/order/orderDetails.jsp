@@ -25,7 +25,6 @@
 
 <div>
     <div><a href="/orderList">Back to order list</a></div>
-    <%--    <div><a href="/customerOrders?id=${customer.id}">Back to customer orders</a></div>--%>
 </div>
 
 
@@ -62,16 +61,11 @@
             <td>${order.sparepartsCost}</td>
             <td>${order.manHourCost}</td>
             <td>${order.manHourAmount}</td>
-<%--            <td>${order.customerCost}</td>--%>
             <td>${order.sparepartsCost + order.manHourAmount * order.manHourCost}</td>
             <td>${customer.firstName} ${customer.lastName}</td>
             <td>${vehicle.brand} ${vehicle.model} ${vehicle.registrationNumber}</td>
             <td>${employee.firstName} ${employee.lastName}</td>
             <td>${status.name}</td>
-            <%--            <td>${order.customerId}</td>--%>
-            <%--            <td>${order.vehicleId}</td>--%>
-            <%--            <td>${order.employeeId}</td>--%>
-            <%--            <td>${order.statusId}</td>--%>
         </tr>
         </tbody>
     </table>

@@ -27,10 +27,6 @@ public class AddOrder extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-//        int customerId = Integer.valueOf(req.getParameter("id"));
-//        Customer customer = customerDao.read(customerId);
-//        req.getSession().setAttribute("customer", customer);
-
         req.setAttribute("vehicles", vehicleDao.findAll());
         req.setAttribute("employees", employeeDao.findAll());
         req.setAttribute("customers", customerDao.findAll());
@@ -108,14 +104,6 @@ public class AddOrder extends HttpServlet {
         order.setCustomerId(customerId);
         order.setVehicleId(vehicleId);
 
-        //???
-//        List<Vehicle> vehicles = vehicleDao.findAllbyCustomerId(customerId);
-//        for(int i=0; i<vehicles.size(); i++) {
-//            Vehicle vehicle = vehicleDao.read(customerId);
-//            if(customerId == vehicle.getCustomerId()) {
-//                order.setVehicleId(vehicleId);
-//            }
-//        }
 
 
 

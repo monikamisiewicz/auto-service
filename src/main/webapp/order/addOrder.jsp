@@ -48,10 +48,6 @@
         <label for="repairDescription">Repair description</label>
         <textarea class="form-control" name="repairDescription" rows="3" id="repairDescription"></textarea>
     </div>
-    <%--    <div>--%>
-    <%--        <label>Customer cost</label>--%>
-    <%--        <div><input type="number" min="0.00" step="0.01" name="customerCost" placeholder="Customer cost"></div>--%>
-    <%--    </div>--%>
     <div class="form-group">
         <label for="spareparts">Spareparts cost</label>
         <input type="number" class="form-control" min="0.00" step="0.01" name="sparepartsCost" placeholder="Spareparts cost" id="spareparts">
@@ -74,7 +70,7 @@
                 </c:forEach>
             </select>
     </div>
-    <%--zrobić walidację, jeśli customer id=? to pokaż tylko vehicles z tym id--%>
+
     <div class="form-group">
         <label for="vehicle">Vehicle</label>
             <select class="custom-select" id="vehicle" name="vehicleId">

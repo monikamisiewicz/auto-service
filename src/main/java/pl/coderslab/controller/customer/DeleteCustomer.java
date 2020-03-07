@@ -45,8 +45,6 @@ public class DeleteCustomer extends HttpServlet {
             resp.sendRedirect("/customerList");
         }
 
-        //jak zrobić, aby po usunięciu, id kolejnych wierszy zmieniło się odpowiednio????
-
     }
 }
 

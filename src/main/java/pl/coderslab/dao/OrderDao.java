@@ -391,57 +391,5 @@ public class OrderDao {
         }
     }
 
-//    public Map<String, Integer> calculateManHours(Date fromDate, Date toDate) {
-//        Map<String, Integer> map = new HashMap<>();
-//        try (Connection conn = DbUtil.getConn();
-//             PreparedStatement statement = conn.prepareStatement(CALCULATE_MAN_HOURS_QUERY);
-//             statement.setDate(1, fromDate);
-//             statement.setDate(2, toDate);
-//             ResultSet rs = statement.executeQuery()) {
-//
-//            while (rs.next()) {
-//                map.put(rs.getString("name"),
-//                        rs.getInt("man_hours_amount"));
-//            }
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//
-//        }
-//        return map;
-//    }
-
-//    public List<Order> calculateManHours(Date fromDate, Date toDate) {
-//        List<Order> orders = new ArrayList<>();
-//        try (Connection conn = DbUtil.getConn();
-//             PreparedStatement statement = conn.prepareStatement(CALCULATE_MAN_HOURS_QUERY);
-//             statement.setDate(1, fromDate);
-//             statement.setDate(2, toDate);
-//             ResultSet rs = statement.executeQuery()) {
-//
-//            Order order = new Order();
-//            order.setId(rs.getInt("id"));
-//            order.setRepairAcceptanceDate(rs.getDate("repair_acceptance_date"));
-//            order.setPlannedRepairStart(rs.getDate("planned_repair_start"));
-//            order.setRepairStart(rs.getDate("repair_start"));
-//            order.setProblemDescription(rs.getString("problem_description"));
-//            order.setRepairDescription(rs.getString("repair_description"));
-//            order.setCustomerCost(rs.getDouble("customer_cost"));
-//            order.setSparepartsCost(rs.getDouble("spareparts_cost"));
-//            order.setManHourCost(rs.getDouble("man_hour_cost"));
-//            order.setManHourAmount(rs.getInt("man_hour_amount"));
-//            order.setCustomerId(rs.getInt("customer_id"));
-//            order.setEmployeeId(rs.getInt("employee_id"));
-//            order.setVehicleId(rs.getInt("vehicle_id"));
-//            order.setStatusId(rs.getInt("status_id"));
-//
-//            orders.add(order);
-//
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//
-//        }
-//        return orders;
-//    }
 
 }
